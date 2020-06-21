@@ -50,8 +50,9 @@ If you are using keyboard/piano, instead of human voice, and obtained bad result
 #### *Quick installation guide:*
 Make sure you have python 3 installed.
 
-`python get-pip.py`
+`$ python get-pip.py`
 
-`pip install crepe`
+`$ pip install --upgrade tensorflow  # if you don't already have tensorflow >= 2.0.0
+$ pip install crepe`
 
-`pip install PyAudio`
+`$ pip install PyAudio`
