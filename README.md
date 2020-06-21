@@ -20,23 +20,23 @@ The bpm could be high since the algorithm tend to look for the shortest reasonab
 
 ### **Example use cases:**
 #### Case 1:
-execute(record=True, audio_output=True, graph=True, style="EAST", verbose=True)
+`execute(record=True, audio_output=True, graph=True, style="EAST", verbose=True)`
 
 Will recording after text "Recording, press any LETTER key to stop recording" appears, then create/replace soundfile sheet_output.wav file with synthesized piano notes, and will graph the data over time. Using style="EAST" if music runs on 5 notes oriental scale will greatly increase accuracy. Use style="ALL" if your music is complicated that doesn't run on a particular scale. 
     
 #### Case 2:
-execute()
+`execute()`
 
 Will run every parameter on default as: 
 execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, piano=False)
 In this case, it will look for "temps/output.wav". If the file does not exist, it will print an error. 
-`<addr>` element here instead.
+
 
 ### **Other notes**
 There are 3 types of scales you can choose. 
-style="WEST" is 7 notes standard scale
-style="EAST" is 5 notes oriental scale
-style="ALL" is used when your music is so complicated that doesn't run on a particular scale.
+`style="WEST"` is 7 notes standard scale
+`style="EAST"` is 5 notes oriental scale
+`style="ALL"` is used when your music is so complicated that doesn't run on a particular scale.
 
 If you know what specific scale you are using, valid scale values include:
 'C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B'
@@ -47,7 +47,7 @@ If you are using keyboard instead of human voice and obtain bad result, try pian
 #### Quick installation guide
 Make sure you have python 3 installed
 
-python get-pip.py
+`python get-pip.py`
 
-pip install crepe
+`pip install crepe`
 
