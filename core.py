@@ -659,7 +659,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
         plt.legend(loc='upper right')
         plt.show()
 
-    ret = {"interval_length":interval_size, "beats_per_note":intervals, "frequencies":freqs, "bpm":int(60000/interval_size/step_size)}
+    ret = {"beat_size":interval_size, "beats":intervals, "frequencies":freqs, "bpm":int(60000/interval_size/step_size)}
     return ret
 
 
