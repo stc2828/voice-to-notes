@@ -49,7 +49,7 @@ def record_audio(output_directory="temps/output.wav"):
     listener = keyboard.Listener(on_press=on_press, on_release=on_release)
     listener.start()
     if not MUTE:
-        print('Recording, press any LETTER key to stop recording')
+        print('Recording, press any key to stop recording')
 
     stream = p.open(format=sample_format,
                     channels=channels,
@@ -518,9 +518,9 @@ def sheet_to_audio(sheet, reference, fs=44100):
                 return i
         return -1
 
-    filename = "temps/temp_sheet.wav"
+    filename = "sheet_output.wav"
     if VERBOSE:
-        print("preparing audio output")
+        print("Preparing audio output")
     # format: [[note_frequency, volume, starting, ending]], sheet_frequency
 
     # add 0.1 sec padding front and back
@@ -556,7 +556,7 @@ def sheet_to_audio(sheet, reference, fs=44100):
         out[i] += int(val)
     wavfile.write(filename, 44100, out)
     if VERBOSE:
-        print("audio output completed")
+        print("Audio output completed")
     return filename
 
 
@@ -612,14 +612,14 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
     fre = smooth_frequency(fre, con)
     amp = smooth_amplitude(amp)
 
-    beats = find_beat(amp, fre, con, min_len=7)
+    beats = find_beat(amp, fre, con, min_len=7, piano=piano)
     start_of_beats = [i[0] for i in beats]
 
     intervals, interval_size = seek(start_of_beats)
     if VERBOSE:
-        print("Elementary beat size: ", interval_size, "ms")
-        print("Raw interval length(ms): ", intervals)
-        print("Raw frequencies", [i for _, _, i in beats])
+        print("Beat duration(ms): ", interval_size*step_size,  "ms")
+        print("Raw beats per note: ", intervals)
+        print("Raw frequencies: ", [i for _, _, i in beats])
 
     score, intervals = improve(intervals)
     freqs, scale_index = find_note([i for _,_,i in beats], scale_index=scale, style=style)
@@ -638,6 +638,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
                 print(intervals[i], sheet[i])
 
     if graph:
+        import matplotlib.pylab as plt
         bins = range(len(amp))
         if piano:
             amp = [0] * 3 + amp[:-3]
@@ -649,12 +650,12 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
             for i in start_of_beats[1:]:
                 plt.axvline(x=i, alpha=0.5, color="grey", linestyle="dashed")
         plt.xlabel("Time(ms)")
-        plt.title("Amplitude, frequency, confidence over time")
+        plt.title("amplitude, frequency, confidence over time")
         plt.grid(alpha=0.25)
         plt.legend(loc='upper right')
         plt.show()
 
-    ret = {"interval_length:":interval_size, "intervals:":intervals, "frequencies":freqs}
+    ret = {"interval_length":interval_size, "beats_per_note":intervals, "frequencies":freqs, "bpm":int(60000/interval_size/step_size)}
     return ret
 
 
