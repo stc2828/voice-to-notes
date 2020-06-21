@@ -1,9 +1,9 @@
 # **Voice-to-notes**
-Taicheng Song's voice to notes project
+This is Taicheng Song's voice to notes project.
 
 This module take a .wav audio file of human singing, and output the optimal beats per minute, beats per note, frequency for of note, and duration of a beat(in ms).
 
-The return format is a dictionary with: {"interval_length", "beats_per_note", "frequencies", "bpm"} as keys
+The return format is a dictionary with: {"interval_length", "beats_per_note", "frequencies", "bpm"} as keys.
 
 
 ## **Important tips**
@@ -13,7 +13,7 @@ Try not to input more than 20 seconds at a time.
 
 This module find frequency with crepe, which on average take longer to run than the duration of the input sound file.
 
-You must install crepe, which only works on Python 3.
+You must install crepe, which only works on Python 3. (Installation help below)
 
 The bpm could be high since the algorithm tend to look for the shortest reasonable beat size. 
 
@@ -34,8 +34,8 @@ In this case, it will look for "temps/output.wav". If the file does not exist, i
 
 ## **Other notes**
 There are 3 types of scales you can choose. 
-`style="WEST"` is 7 notes standard scale
-`style="EAST"` is 5 notes oriental scale
+`style="WEST"` is 7 notes standard scale.
+`style="EAST"` is 5 notes oriental scale.
 `style="ALL"` is used when your music is so complicated that doesn't run on a particular scale.
 
 If you know what specific scale you are using, valid scale values include:
@@ -45,7 +45,7 @@ Note that it is easy for human to sing off tune, it is advisable to leave scale=
 If you are using keyboard instead of human voice and obtain bad result, try piano=True. 
 
 #### *Quick installation guide*
-Make sure you have python 3 installed
+Make sure you have python 3 installed.
 
 `python get-pip.py`
 
