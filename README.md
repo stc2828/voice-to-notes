@@ -40,11 +40,10 @@ There are 3 types of scales you can choose:
 * `style="EAST"` is 5 notes oriental scale.
 * `style="ALL"` is used when your music is so complicated that doesn't run on a particular scale.
 
-If you know what specific scale you are using, valid scale values include:
+`scale=None` is set at defult since it is easy for human to sing off tune, and it is advisable to let the module pick a best fit scale. However, if you know what specific scale you are using, valid scale values includes:
 'C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B'
-Note that it is easy for human to sing off tune, it is advisable to leave scale=None and let module pick a best fit scale.
 
-If you are using keyboard/piano instead of human voice and obtained bad result, try `piano=True`. 
+If you are using keyboard/piano, instead of human voice, and obtained bad result, try `piano=True`. 
 
 #### *Quick installation guide:*
 Make sure you have python 3 installed.
