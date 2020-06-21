@@ -35,10 +35,10 @@ In this case, it will look for "temps/output.wav". If the file does not exist, i
 
 
 ## **Other notes**
-There are 3 types of scales you can choose. 
-*`style="WEST"` is 7 notes standard scale.
-*`style="EAST"` is 5 notes oriental scale.
-*`style="ALL"` is used when your music is so complicated that doesn't run on a particular scale.
+There are 3 types of scales you can choose:
+* `style="WEST"` is 7 notes standard scale.
+* `style="EAST"` is 5 notes oriental scale.
+* `style="ALL"` is used when your music is so complicated that doesn't run on a particular scale.
 
 If you know what specific scale you are using, valid scale values include:
 'C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B'
