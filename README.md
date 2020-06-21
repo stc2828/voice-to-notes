@@ -18,7 +18,7 @@ You must install crepe, which only works on Python 3.
 The bpm could be high since the algorithm tend to look for the shortest reasonable beat size. 
 
 
-## **Example use cases:**
+## **Example use cases**
 #### *Case 1:*
 `execute(record=True, audio_output=True, graph=True, style="EAST", verbose=True)`
 
