@@ -19,12 +19,12 @@ The bpm could be high since the algorithm tend to look for the shortest reasonab
 
 
 ### Example use case:
-###### Case 1:
+#### Case 1:
 execute(record=True, audio_output=True, graph=True, style="EAST", verbose=True)
 
 Will recording after text "Recording, press any LETTER key to stop recording" appears, then create/replace soundfile sheet_output.wav file with synthesized piano notes, and will graph the data over time. Using style="EAST" if music runs on 5 notes oriental scale will greatly increase accuracy. Use style="ALL" if your music is complicated that doesn't run on a particular scale. 
     
-###### Case 2:
+#### Case 2:
 execute()
 
 Will run every parameter on default as: 
@@ -44,10 +44,10 @@ Note that it is easy for human to sing off tune, it is advisable to leave scale=
 
 If you are using keyboard instead of human voice and obtain bad result, try piano=True. 
 
-###### Quick installation guide
+#### Quick installation guide
 Make sure you have python 3 installed
 
-python3 get-pip.py
+python get-pip.py
 
-pip3 install crepe
+pip install crepe
 
