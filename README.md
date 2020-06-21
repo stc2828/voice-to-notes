@@ -1,9 +1,11 @@
 # **Voice-to-notes**
 This is Taicheng Song's voice to notes project.
 
-This module take a .wav audio file of human singing, and output the optimal beats per minute, beats per note, frequency for of note, and duration of a beat(in ms).
+This module takes a .wav audio file of human singing, and outputs the optimal beats per minute, optimal beats for each note, optimal frequency of each note, and duration of one standard beat(in ms).
 
-The return format is a dictionary with: {"interval_length", "beats_per_note", "frequencies", "bpm"} as keys.
+This module determines location of each note by looking for sudden changes in amplitude, and shifts in pitch. It then looks for an optimal beat size, and assign best number of beats for each note with a DFS speed up by memorization. 
+
+The return format is a dictionary with: {"bpm", "beats", "frequencies", "beat_size"} as keys.
 
 
 ## **Important tips**
@@ -13,13 +15,13 @@ Please sing at moderate(slow) pace.
 
 Try not to input more than 20 seconds at a time. 
 
-This module find frequency with crepe, which on average take longer to run than the duration of the input sound file.
+This program could work for instrument, it is only designed to work for monotonic music. 
 
 You must install crepe, which only works on Python 3. (Installation help below)
 
 you must install pyaudio if you want the module to record your voice.
 
-The bpm could be high since the algorithm tend to look for the shortest reasonable beat size. 
+The bpm could be high since the algorithm tend to look for the smallest reasonable beat size. 
 
 
 ## **Example use cases**
@@ -32,7 +34,7 @@ Will record after text "Recording, press any LETTER key to stop recording" appea
 `execute()`
 
 Will run every parameter on default as: 
-execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, piano=False)
+execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False)
 In this case, it will look for "temps/output.wav". If the file does not exist, it will print an error. 
 
 
@@ -45,6 +47,8 @@ There are 3 types of scales you can choose:
 `scale=None` is set at defult since it is easy for human to sing off tune, and it is advisable to let the module pick a best fit scale. However, if you know what specific scale you are using, valid scale values are:
 'C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B'
 
+`express=False` could yield slightly more accurate result, but will require about double the runtime. 
+
 If you are using keyboard/piano, instead of human voice, and obtained bad result, try `piano=True`. 
 
 #### *Quick installation guide:*
@@ -56,6 +60,3 @@ Make sure you have python 3 installed.
 `$ pip install crepe`
 
 `$ pip install PyAudio`
-
-a  
-b
