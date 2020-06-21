@@ -9,6 +9,8 @@ The return format is a dictionary with: {"interval_length", "beats_per_note", "f
 ## **Important tips**
 For better pickup accuracy, instead of singing the lyrics, try to sing with simple, burst of sound, like: "Ding, Ding, Ding", "Dong, Dong, Dong", etc. 
 
+Please sing at moderate(slow) pace.
+
 Try not to input more than 20 seconds at a time. 
 
 This module find frequency with crepe, which on average take longer to run than the duration of the input sound file.
