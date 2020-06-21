@@ -1,17 +1,21 @@
 # Voice-to-notes
 Taicheng Song's voice to notes project
 
-This project take a .wav audio file of human singing, and output an optimal beats per minute, beats per note, frequency for of note, and duration of a beat(in ms).
+This module take a .wav audio file of human singing, and output the optimal beats per minute, beats per note, frequency for of note, and duration of a beat(in ms).
 
 The return format is a dictionary with: {"interval_length", "beats_per_note", "frequencies", "bpm"} as keys
 
 
 ### Important tip
-Instead of sining the lyrics, try to sin with simple, burst of sound such as: "Ding, Ding, Ding", "Dong, Dong, Dong", etc. For better pickup accuracy.
+For better pickup accuracy, instead of sining the lyrics, try to sing with simple, burst of sound, like: "Ding, Ding, Ding", "Dong, Dong, Dong", etc. 
 
-This module find frequency with crepe, which on average take longer to run then the duration of the input sound file.
+Try not to input more than 20 seconds at a time. 
 
-You must install Crepe, which only works in Python 3.
+This module find frequency with crepe, which on average take longer to run than the duration of the input sound file.
+
+You must install crepe, which only works on Python 3.
+
+The bpm could be high since the algorithm tend to look for the shortest reasonable beat size. 
 
 
 ### Example use case:
@@ -25,14 +29,14 @@ execute()
 
 Will run every parameter on default as: 
 execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, piano=False)
-It will execute on "temps/output.wav". If the file does not exist, it will print an error. 
+In this case, it will look for "temps/output.wav". If the file does not exist, it will print an error. 
 
 
 ### Other notes
 There are 3 types of scales you can choose. 
 style="WEST" is 7 notes standard scale
 style="EAST" is 5 notes oriental scale
-style="ALL" if your music is complicated that doesn't run on a particular scale.
+style="ALL" is used when your music is so complicated that doesn't run on a particular scale.
 
 If you know what specific scale you are using, valid scale values include:
 'C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B'
