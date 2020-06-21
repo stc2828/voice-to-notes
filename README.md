@@ -9,7 +9,9 @@ The return format is a dictionary with: {"interval_length", "beats_per_note", "f
 ### Important tip
 Instead of sining the lyrics, try to sin with simple, burst of sound such as: "Ding, Ding, Ding", "Dong, Dong, Dong", etc. For better pickup accuracy.
 
-This module find frequency with crepe, which on average take longer to run then the duration of the input sound file. 
+This module find frequency with crepe, which on average take longer to run then the duration of the input sound file.
+
+You must install Crepe, which only works in Python 3.
 
 
 ### Example use case:
@@ -37,4 +39,11 @@ If you know what specific scale you are using, valid scale values include:
 Note that it is easy for human to sing off tune, it is advisable to leave scale=None and let module pick a best fit scale.
 
 If you are using keyboard instead of human voice and obtain bad result, try piano=True. 
+
+###### Quick installation guide
+Make sure you have python 3 installed
+
+python3 get-pip.py
+
+pip3 install crepe
 
