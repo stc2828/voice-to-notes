@@ -15,6 +15,8 @@ This module find frequency with crepe, which on average take longer to run than 
 
 You must install crepe, which only works on Python 3. (Installation help below)
 
+you must install pyaudio if you want the module to record your voice.
+
 The bpm could be high since the algorithm tend to look for the shortest reasonable beat size. 
 
 
@@ -44,9 +46,11 @@ Note that it is easy for human to sing off tune, it is advisable to leave scale=
 
 If you are using keyboard instead of human voice and obtain bad result, try piano=True. 
 
-#### *Quick installation guide*
+#### *Quick installation guide:*
 Make sure you have python 3 installed.
 
 `python get-pip.py`
 
 `pip install crepe`
+
+`pip install PyAudio`
