@@ -125,9 +125,12 @@ def amplitude(filename, time_step):
     return arr
 
 
-def run_crepe(filename, step_size):
+def run_crepe(filename, step_size, smaller_model=True):
     sr, audio = wavfile.read(filename)
-    time, frequency, confidence, activation = crepe.predict(audio, sr, viterbi=True, step_size=step_size, verbose=False)
+    if smaller_model:
+        time, frequency, confidence, activation = crepe.predict(audio, sr, viterbi=True, step_size=step_size, verbose=False, model_capacity="medium")
+    else:
+        time, frequency, confidence, activation = crepe.predict(audio, sr, viterbi=True, step_size=step_size, verbose=False)
     return time, frequency, confidence
 
 
@@ -561,7 +564,7 @@ def sheet_to_audio(sheet, reference, fs=44100):
 
 
 ### MAIN
-def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, piano=False):
+def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False):
     global VERBOSE, MUTE
     generate_necessary_directories()
     if verbose:
@@ -588,7 +591,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
             print("WAV file: '", wav_filename, "' not found")
             return {}
         start_time = time.time()
-        tim, fre, con = run_crepe(wav_filename, step_size)
+        tim, fre, con = run_crepe(wav_filename, step_size, smaller_model=express)
         record_to_txt(amp, fre, con)
         if VERBOSE:
             print("crepe runtime: ", int(1000*(time.time()-start_time)), "ms")
@@ -617,7 +620,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
 
     intervals, interval_size = seek(start_of_beats)
     if VERBOSE:
-        print("Beat duration(ms): ", interval_size*step_size,  "ms")
+        print("Beat duration: ", interval_size*step_size,  "ms")
         print("Raw beats per note: ", intervals)
         print("Raw frequencies: ", [i for _, _, i in beats])
 
@@ -633,7 +636,8 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
         sheet_path = sheet_to_audio(sheet, ref)
         if VERBOSE:
             print("Sound output saved at: ", sheet_path)
-            print("Music sheet(for each note: units_of_intervals, [frequency, strength, start(seconds), end]):")
+            print("Music sheet: ")
+            print("units_of_intervals, [frequency, strength, start(sec), end(sec)]")
             for i in range(len(beats)):
                 print(intervals[i], sheet[i])
 
