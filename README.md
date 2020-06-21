@@ -52,7 +52,7 @@ Make sure you have python 3 installed.
 
 `$ python get-pip.py`
 
-`$ pip install --upgrade tensorflow  # if you don't already have tensorflow >= 2.0.0
+`$ pip install --upgrade tensorflow  # if you don't already have tensorflow >= 2.0.0__
 $ pip install crepe`
 
 `$ pip install PyAudio`
