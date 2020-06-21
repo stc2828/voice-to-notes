@@ -180,7 +180,7 @@ def find_beat(amp, fre, con, min_len=7, piano=False):
         return amplitude
 
     if piano: # piano input cause significant offset for some reason
-        amp = [0]*3 + amp[:-5]
+        amp = [0]*3 + amp[:-3]
     q9_amp = np.quantile(amp, 0.9)
     min_amp = q9_amp*0.25
     i, l = 0, len(amp)
@@ -561,7 +561,7 @@ def sheet_to_audio(sheet, reference, fs=44100):
 
 
 ### MAIN
-def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False):
+def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, piano=False):
     global VERBOSE, MUTE
     generate_necessary_directories()
     if verbose:
@@ -639,6 +639,8 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
 
     if graph:
         bins = range(len(amp))
+        if piano:
+            amp = [0] * 3 + amp[:-3]
         plt.plot(bins, amp, label="amplitude", color="red")
         plt.plot(bins, [10 * i for i in fre], label="frequency(Hz)(x10)", color="blue")
         plt.plot(bins, [1000 * i for i in con], label="confidence(%)(x10)", color="green")
@@ -657,6 +659,5 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
 
 
 if __name__ == "__main__":
-    ret = execute()
-    ret = execute(wav_filename="temps/lyh.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=True, graph=True, style="WEST", scale=None, verbose=True, mute=False)
+    ret = execute(record=True, verbose=True, audio_output=True)
     print(ret)
