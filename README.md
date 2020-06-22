@@ -25,17 +25,24 @@ The bpm could be high since the algorithm tend to look for the smallest reasonab
 
 
 ## **Example use cases**
+#### *Default parameters:*
+`execute()`
+Equates to:
+`execute(wav_filename="temps/output.wav", txt_filename="temps/output.txt", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False)`
+
+Instead of recording, you can input audo file via `wav_filename` parameter. The `txt_filename` record the amplitude, frequency, confidence data output from crepe, and that you can read from it by setting `use_txt_input=True`, which will make the runtime much faster. 
+
+
 #### *Case 1:*
+`execute(wav_filename="input.wav")`
+
+The module will run for "input.wav". If the file does not exist, it will print an error. 
+
+
+#### *Case 2:*
 `execute(record=True, audio_output=True, graph=True, style="EAST", verbose=True)`
 
 Will record after text "Recording, press any LETTER key to stop recording" appear, then create/replace soundfile sheet_output.wav file with synthesized piano notes, and will graph the data over time. Using style="EAST" if the music runs on 5 notes oriental scale will greatly increase accuracy. Use style="ALL" if the music is complicated, that doesn't run on a particular scale. 
-    
-#### *Case 2:*
-`execute()`
-
-Will run every parameter on default as: 
-execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False)
-In this case, it will look for "temps/output.wav". If the file does not exist, it will print an error. 
 
 
 ## **Other notes**
