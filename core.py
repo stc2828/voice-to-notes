@@ -1,12 +1,11 @@
+import os
 import pyaudio
 import wave
-from pynput import keyboard
-import os
 import crepe
-from scipy.io import wavfile
-import matplotlib.pylab as plt
-import numpy as np
 import time
+from scipy.io import wavfile
+from pynput import keyboard
+import numpy as np
 
 
 # GLOBALS
@@ -564,7 +563,7 @@ def sheet_to_audio(sheet, reference, fs=44100):
 
 
 ### MAIN
-def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False):
+def execute(wav_filename="temps/output.wav", txt_filename="temps/output.txt", step_size=10, use_txt_input=False, record=False, audio_output=False, graph=False, style="WEST", scale=None, verbose=False, mute=False, express=True, piano=False):
     global VERBOSE, MUTE
     generate_necessary_directories()
     if verbose:
@@ -573,7 +572,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
         MUTE = True
     if use_txt_input:
         amp, fre, con = [], [], []
-        f = open("temps/output.txt", "r")
+        f = open(txt_filename, "r")
         data = f.read()
         for i in data.split():
             temp = i.split(",")
@@ -592,7 +591,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
             return {}
         start_time = time.time()
         tim, fre, con = run_crepe(wav_filename, step_size, smaller_model=express)
-        record_to_txt(amp, fre, con)
+        record_to_txt(amp, fre, con, filename=txt_filename)
         if VERBOSE:
             print("crepe runtime: ", int(1000*(time.time()-start_time)), "ms")
 
@@ -632,7 +631,7 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.wav", st
 
     if audio_output:
         sheet = interval_to_sheet(intervals, freqs, interval_size * (step_size * 0.001))
-        ref = import_reference_soundtrack('scale73.wav', 44100 * 2, 73)
+        ref = import_reference_soundtrack('audio_output_refrence.wav', 44100 * 2, 73)
         sheet_path = sheet_to_audio(sheet, ref)
         if VERBOSE:
             print("Sound output saved at: ", sheet_path)
