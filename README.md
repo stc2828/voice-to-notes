@@ -11,9 +11,9 @@ For better pickup accuracy, instead of singing the lyrics, try to sing with simp
 
 Please sing at moderate(slow) pace.
 
-Try not to input more than 20 seconds at a time. 
+Audio record automatically stops at 100 seconds. 
 
-This program could work for instrument, it is only designed to work for monotonic music. 
+This program could work for instrument, it is designed to work for monotonic music. 
 
 You must install crepe, which only works on Python 3. (Installation help below)
 
