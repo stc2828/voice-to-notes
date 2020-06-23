@@ -625,6 +625,8 @@ def execute(wav_filename="temps/output.wav", txt_filename="temps/output.txt", st
 
     score, intervals = improve(intervals)
     freqs, scale_index = find_note([i for _,_,i in beats], scale_index=scale, style=style)
+    if scale_index == None:
+        scale_index = -1
     if VERBOSE:
         scales = ['C', 'C+', 'D', 'D+', 'E', 'F', 'F+', 'G', 'G+', 'A', 'A+', 'B', 'C, East', 'C+, East', 'D, East', 'D+, East', 'E, East', 'F, East', 'F+, East', 'G, East', 'G+, East', 'A, East', 'A+, East', 'B, East', 'ALL']
         print("Scale used: ", scales[scale_index])
