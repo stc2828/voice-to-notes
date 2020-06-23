@@ -11,15 +11,11 @@ For better pickup accuracy, instead of singing the lyrics, try to sing with simp
 
 Please sing at moderate(slow) pace.
 
-Audio record automatically stops at 100 seconds. 
-
-This program could work for instrument, it is designed to work for monotonic music. 
-
 You must install crepe, which only works on Python 3. (Installation help below)
 
-you must install pyaudio if you want the module to record your voice.
+You must install pyaudio if you want the module to record your voice.
 
-The bpm could be high since the algorithm tend to look for the smallest reasonable beat size. 
+You must have audio_output_refrence.wav in the same directory to output sheet music. 
 
 
 ## **Example use cases**
@@ -54,7 +50,12 @@ There are 3 types of scales you can choose:
 
 `express=False` could yield slightly more accurate result, but will require about double the runtime. 
 
-If you are using keyboard/piano, instead of human voice, and obtained bad result, try `piano=True`. 
+This program is designed to work for monotonic music. If you are using instrument, instead of human voice, and obtained bad result, try `piano=True`. 
+
+Audio record automatically stops at 100 seconds. 
+
+The bpm could be high since the algorithm tend to look for the smallest reasonable beat size. 
+
 
 #### *Quick installation guide:*
 Make sure you have python 3 installed.
