@@ -3,7 +3,7 @@ This is Taicheng Song's voice to notes project.
 
 This module takes a .wav audio file of human singing, and outputs the sheet music. The return format is a dictionary with: {"bpm", "beats", "frequencies", "beat_size"} as keys. Where "beats" is number of beats for each note, "frequencies" is the frequency for each note, and beat_size is the duration of a beat in ms.  
 
-This module determines location of each note by looking for sudden changes in amplitude, and shifts in pitch. It then looks for an optimal beat size, and assign best number of beats for each note with a DFS speed up by memorization. 
+This module first obtain a graph of frequency over time through the convolutional neural network powered by crepe, then determines location of each note by looking for sudden changes in amplitude, and shifts in pitch. It then looks for an optimal beat size, and assign best number of beats for each note with DFS and memorization. 
 
 
 ## **Important tips**
